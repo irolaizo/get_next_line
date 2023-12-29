@@ -1,52 +1,106 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/28 19:28:49 by irolaizo          #+#    #+#             */
+/*   Updated: 2023/12/29 18:02:52 by irolaizo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_gnl_strlen(const char *str)
+size_t	ft_strlen(const char *s)
 {
-    int i;
-    
-    i = 0;
-    while (str[i] != '\0')
-        i++;
-    return (i);
-}
+	size_t	i;
 
-char	*ft_gnl_strchr(const char *s, int c)
-{
-	int i;
-	
 	i = 0;
-	while (s[i] != '\0' && s[i] != c)
-		i++;
-	if (s[i] == c)
+	if (s == NULL)
+		return (0);
+	while (s[i])
 	{
-		i++;
-		return((const char *)&s[i]);
-	}	
-	else
-		return(NULL);
-}
-
-char	*ft_strjoin(char const *str_rd, char const *buff)
-{
-	int	i;
-	int	j;
-	int	leng_total;
-	char str_of_both;
-
-	if (!str_rd || !buff)
-		return (NULL);
-	leng_total = (char *)malloc(ft_gnl_strlen(str_rd) + ft_gnl_strlen(buff));
-	i = 0;
-	while (str_rd[i])
-	{
-		str_of_both[i] = str_rd[i];
 		i++;
 	}
+	return (i);
+}
+char *ft_strjoin(char *storage, char *buff)
+{
+	int		i;
+	int 	k;
+	char 	*temp;
+	
+	if(storage == NULL && buff == NULL)
+		return(NULL);
+	temp = NULL;
+	temp = malloc(sizeof(char )*(ft_strlen(storage) + ft_strlen(buff)+1));
+	if(temp == NULL)
+		return (NULL);
+	i = -1;
+	while (storage && storage[++i])
+		temp[i] = storage[i];
+	k = 0;
+	while (buff && buff[k])
+		temp[i++] = buff[k++];
+	temp[i] = '\0';
+	if(storage != NULL)
+	{
+		free(storage);
+		storage=NULL;
+	}
+	storage = temp;
+	return (storage);
+}
+char	*ft_print_line(char *storage)
+{
+    int i;
+    int j;
+    char *line;
+
+    i = 0;
+    if (storage[i] == NULL)
+        return (NULL);
+    while (storage && storage[i] && storage[i] != '\n')
+        i++;
+    line = (char *)malloc(sizeof(char) * (i + 2));
+    if (line == NULL)
+        return (NULL);
+    j = 0;
+	while (storage[j] && storage[j] != '\n')
+	{
+		line[j] = storage[j];
+		j++;
+	}
+	if (storage[j] == '\n')
+	{
+		line[j] == storage[j];
+		j++;
+	}
+	line[j] = '\0';
+	return (line);	
+}
+
+ft_remain(char *storage)
+{
+	int	i;
+	int j;
+	char *new_storage;
+	
+	if (storage == NULL)
+		return (NULL);
+	new_storage = NULL;
+	i = 0;
+	while (storage[i] && storage[i] != '\n')
+		i++;
+	new_storage = malloc(sizeof(char) * ft_strlen(storage) + 1 - i);
+	if (!new_storage)
+		return (NULL);
 	j = 0;
-	while(buff[j])
-		str_of_both[i + j] = buff[j];
-	str_of_both[i + j] = '\0';
-	free (leng_total);
-	return (str_of_both);
+	i = 0;
+    while (storage && storage[i])
+        new_storage[j++] = storage[i++];
+    new_storage[j] = '\0';
+    free (storage);
+    return (new_storage);
 }
