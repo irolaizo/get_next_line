@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:28:49 by irolaizo          #+#    #+#             */
-/*   Updated: 2023/12/29 18:02:52 by irolaizo         ###   ########.fr       */
+/*   Updated: 2023/12/29 18:07:05 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_print_line(char *storage)
     char *line;
 
     i = 0;
-    if (storage[i] == NULL)
+    if (storage == NULL)
         return (NULL);
     while (storage && storage[i] && storage[i] != '\n')
         i++;
@@ -74,14 +74,14 @@ char	*ft_print_line(char *storage)
 	}
 	if (storage[j] == '\n')
 	{
-		line[j] == storage[j];
+		line[j] = storage[j];
 		j++;
 	}
 	line[j] = '\0';
 	return (line);	
 }
 
-ft_remain(char *storage)
+char *ft_remain(char *storage)
 {
 	int	i;
 	int j;

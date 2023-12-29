@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:34:28 by irolaizo          #+#    #+#             */
-/*   Updated: 2023/12/29 16:27:39 by irolaizo         ###   ########.fr       */
+/*   Updated: 2023/12/29 18:06:42 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,7 @@ char	*get_next_line(int fd);
 /*UTILS*/
 size_t	ft_strlen(const char *s);
 char *ft_strjoin(char *storage, char *buff);
+char	*ft_print_line(char *storage);
+char *ft_remain(char *storage);
+
 #endif
