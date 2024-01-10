@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:28:49 by irolaizo          #+#    #+#             */
-/*   Updated: 2023/12/29 18:07:05 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:42:11 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ size_t	ft_strlen(const char *s)
 	if (s == NULL)
 		return (0);
 	while (s[i])
-	{
-		i++;
-	}
+		i++; 
 	return (i);
 }
 char *ft_strjoin(char *storage, char *buff)
@@ -30,7 +28,7 @@ char *ft_strjoin(char *storage, char *buff)
 	int		i;
 	int 	k;
 	char 	*temp;
-	
+
 	if(storage == NULL && buff == NULL)
 		return(NULL);
 	temp = NULL;
@@ -47,11 +45,29 @@ char *ft_strjoin(char *storage, char *buff)
 	if(storage != NULL)
 	{
 		free(storage);
-		storage=NULL;
+		storage = NULL;
 	}
 	storage = temp;
 	return (storage);
 }
+char	*ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
+}
+ 
 char	*ft_print_line(char *storage)
 {
     int i;

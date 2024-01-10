@@ -6,34 +6,43 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:34:22 by irolaizo          #+#    #+#             */
-/*   Updated: 2023/12/29 17:53:25 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:20:45 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_read_file(int fd, char *storage)
+{
+	char *temp_storage;
+	int	 bytes_read;
+
+	temp_storage = NULL;
+	temp_storage = malloc((BUFFER_SIZE +1) * sizeof(char));
+	if (temp_storage == NULL)
+		return (NULL);
+	bytes_read = 1;
+	while((ft_strchr(storage,'\n') == NULL)  && bytes_read != 0)
+	{
+		bytes_read = read(fd, temp_storage, BUFFER_SIZE);
+		if(bytes_read < 0)
+			return (free(temp_storage), free(storage), NULL);
+		temp_storage[bytes_read] = '\0';
+		storage = ft_strjoin(storage, temp_storage);
+	}
+	free (temp_storage);
+	return (storage);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char 		buff[BUFFER_SIZE + 1];
 	static char	*storage;
-	int			rd_bytes;
 
-	line = NULL;
-	rd_bytes = 0;
-	storage = NULL;
-	while(1)
-	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		buff[rd_bytes] = '\0';
-		storage = ft_strjoin(storage, buff);
-		if(rd_bytes == -1)
-			return(NULL);
-		if(rd_bytes == 0)
-			break;
-	}
+	storage = ft_read_file(fd, storage);
+	if (storage == NULL)
+		return (NULL);
 	line = ft_print_line(storage);
 	storage = ft_remain(storage);
-	//return(line);
-	return(storage);
+	return(line);
 }

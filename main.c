@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 13:33:31 by irolaizo          #+#    #+#             */
-/*   Updated: 2023/12/29 16:45:37 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:40:32 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,27 @@ int   main(void)
 	close(fd1);
 	return (0);
 }
+/* int	main()
+{
+	char	*line;
+	int		i;
+	int		fd;
+
+	fd = open("giant_line_nl.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error opening file");
+		return (1);
+	}
+	i = 0;
+	while (i < 2)
+	{
+		line = get_next_line(fd);
+		printf("line [%02d]: %s\n", i, line);
+		free(line);
+		i++;
+	}
+	//printf("line [%02d]: %s\n", i, line);
+	close(fd);
+	return (0);
+ } */
