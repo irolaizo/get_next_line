@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:28:49 by irolaizo          #+#    #+#             */
-/*   Updated: 2024/01/10 17:42:11 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:39:07 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,30 @@ size_t	ft_strlen(const char *s)
 	if (s == NULL)
 		return (0);
 	while (s[i])
-		i++; 
+		i++;
 	return (i);
 }
-char *ft_strjoin(char *storage, char *buff)
+
+char	*ft_strjoin(char *storage, char *buff)
 {
 	int		i;
-	int 	k;
-	char 	*temp;
+	int		k;
+	char	*temp;
 
-	if(storage == NULL && buff == NULL)
-		return(NULL);
-	temp = NULL;
-	temp = malloc(sizeof(char )*(ft_strlen(storage) + ft_strlen(buff)+1));
-	if(temp == NULL)
+	if (storage == NULL && buff == NULL)
 		return (NULL);
-	i = -1;
+	temp = NULL;
+	temp = malloc(sizeof(char ) * (ft_strlen(storage) + ft_strlen(buff) + 1));
+	if (temp == NULL)
+		return (NULL);
+	i = 0;
 	while (storage && storage[++i])
 		temp[i] = storage[i];
+	temp[i] = '\0';
 	k = 0;
 	while (buff && buff[k])
 		temp[i++] = buff[k++];
-	temp[i] = '\0';
-	if(storage != NULL)
+	if (storage != NULL)
 	{
 		free(storage);
 		storage = NULL;
@@ -50,6 +51,7 @@ char *ft_strjoin(char *storage, char *buff)
 	storage = temp;
 	return (storage);
 }
+
 char	*ft_strchr(char *s, int c)
 {
 	int	i;
@@ -67,22 +69,22 @@ char	*ft_strchr(char *s, int c)
 	}
 	return (0);
 }
- 
+
 char	*ft_print_line(char *storage)
 {
-    int i;
-    int j;
-    char *line;
+	int		i;
+	int		j;
+	char	*line;
 
-    i = 0;
-    if (storage == NULL)
-        return (NULL);
-    while (storage && storage[i] && storage[i] != '\n')
-        i++;
-    line = (char *)malloc(sizeof(char) * (i + 2));
-    if (line == NULL)
-        return (NULL);
-    j = 0;
+	i = 0;
+	if (storage == NULL)
+		return (NULL);
+	while (storage && storage[i] && storage[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (line == NULL)
+		return ((free(line)), NULL);
+	j = 0;
 	while (storage[j] && storage[j] != '\n')
 	{
 		line[j] = storage[j];
@@ -94,15 +96,15 @@ char	*ft_print_line(char *storage)
 		j++;
 	}
 	line[j] = '\0';
-	return (line);	
+	return (line);
 }
 
-char *ft_remain(char *storage)
+char	*ft_remain(char *storage)
 {
-	int	i;
-	int j;
-	char *new_storage;
-	
+	int		i;
+	int		j;
+	char	*new_storage;
+
 	if (storage == NULL)
 		return (NULL);
 	new_storage = NULL;
@@ -114,9 +116,9 @@ char *ft_remain(char *storage)
 		return (NULL);
 	j = 0;
 	i = 0;
-    while (storage && storage[i])
-        new_storage[j++] = storage[i++];
-    new_storage[j] = '\0';
-    free (storage);
-    return (new_storage);
+	while (storage && storage[i])
+		new_storage[j++] = storage[i++];
+	new_storage[j] = '\0';
+	free (storage);
+	return (new_storage);
 }

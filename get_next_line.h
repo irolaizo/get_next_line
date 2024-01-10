@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:34:28 by irolaizo          #+#    #+#             */
-/*   Updated: 2024/01/10 18:18:37 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:43:01 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-# ifndef	 BUFFER_SIZE
+# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
@@ -26,9 +26,9 @@
 char	*get_next_line(int fd);
 /*UTILS*/
 size_t	ft_strlen(const char *s);
-char 	*ft_strjoin(char *storage, char *buff);
+char	*ft_strjoin(char *storage, char *buff);
 char	*ft_print_line(char *storage);
-char 	*ft_remain(char *storage);
+char	*ft_remain(char *storage);
 char	*ft_strchr(char *s, int c);
 
 #endif

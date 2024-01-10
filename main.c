@@ -6,13 +6,13 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 13:33:31 by irolaizo          #+#    #+#             */
-/*   Updated: 2024/01/02 16:40:32 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:10:21 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int   main(void)
+/* int   main(void)
 {
 	char	*line;
 
@@ -24,7 +24,7 @@ int   main(void)
 		free(line);
 	close(fd1);
 	return (0);
-}
+} */
 /* int	main()
 {
 	char	*line;
