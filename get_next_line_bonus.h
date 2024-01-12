@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 19:34:28 by irolaizo          #+#    #+#             */
-/*   Updated: 2024/01/12 19:10:52 by irolaizo         ###   ########.fr       */
+/*   Created: 2024/01/12 18:03:53 by irolaizo          #+#    #+#             */
+/*   Updated: 2024/01/12 18:18:51 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <sys/syslimits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

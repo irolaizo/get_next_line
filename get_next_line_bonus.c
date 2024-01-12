@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 19:34:22 by irolaizo          #+#    #+#             */
-/*   Updated: 2024/01/12 19:16:12 by irolaizo         ###   ########.fr       */
+/*   Created: 2024/01/12 18:03:07 by irolaizo          #+#    #+#             */
+/*   Updated: 2024/01/12 19:11:52 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_to_line(char *storage)
 {
@@ -92,29 +92,27 @@ char	*ft_read_file(int fd, char *storage)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*storage;
+	static char	*storage[OPEN_MAX];
 
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{
-		if (storage)
+		if (storage[fd])
 		{
-			free(storage);
-			storage = NULL;
+			free(storage[fd]);
+			storage[fd] = NULL;
 		}
 		return (NULL);
 	}
-	if (!storage)
+	if (!storage[fd])
 	{
-		storage = malloc(sizeof(char));
-		if (!storage)
-			return (NULL);
-		storage[0] = '\0';
+		storage[fd] = malloc(sizeof(char));
+		storage[fd][0] = '\0';
 	}
-	storage = ft_read_file(fd, storage);
-	if (storage == NULL)
+	storage[fd] = ft_read_file(fd, storage[fd]);
+	if (storage[fd] == NULL)
 		return (NULL);
-	line = ft_to_line(storage);
-	storage = ft_remain(storage);
+	line = ft_to_line(storage[fd]);
+	storage[fd] = ft_remain(storage[fd]);
 	return (line);
 }
 
