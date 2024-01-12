@@ -6,7 +6,7 @@
 /*   By: irolaizo <irolaizo@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 19:28:49 by irolaizo          #+#    #+#             */
-/*   Updated: 2024/01/10 19:39:07 by irolaizo         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:09:46 by irolaizo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,30 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char *storage, char *buff)
 {
-	int		i;
-	int		k;
-	char	*temp;
+	size_t		i;
+	size_t		k;
+	size_t		len;
+	char		*temp;
 
 	if (storage == NULL && buff == NULL)
 		return (NULL);
 	temp = NULL;
-	temp = malloc(sizeof(char ) * (ft_strlen(storage) + ft_strlen(buff) + 1));
+	len = ft_strlen(storage) + ft_strlen(buff);
+	temp = malloc(sizeof(char ) * (len + 1));
 	if (temp == NULL)
 		return (NULL);
 	i = 0;
-	while (storage && storage[++i])
+	while (storage[i])
+	{
 		temp[i] = storage[i];
+		i++;
+	}
 	temp[i] = '\0';
 	k = 0;
-	while (buff && buff[k])
+	while (buff != NULL && buff[k] != '\0')
 		temp[i++] = buff[k++];
-	if (storage != NULL)
-	{
-		free(storage);
-		storage = NULL;
-	}
-	storage = temp;
-	return (storage);
+	temp[i] = '\0';
+	return (free(storage), temp);
 }
 
 char	*ft_strchr(char *s, int c)
@@ -68,57 +68,4 @@ char	*ft_strchr(char *s, int c)
 		i++;
 	}
 	return (0);
-}
-
-char	*ft_print_line(char *storage)
-{
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	if (storage == NULL)
-		return (NULL);
-	while (storage && storage[i] && storage[i] != '\n')
-		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
-	if (line == NULL)
-		return ((free(line)), NULL);
-	j = 0;
-	while (storage[j] && storage[j] != '\n')
-	{
-		line[j] = storage[j];
-		j++;
-	}
-	if (storage[j] == '\n')
-	{
-		line[j] = storage[j];
-		j++;
-	}
-	line[j] = '\0';
-	return (line);
-}
-
-char	*ft_remain(char *storage)
-{
-	int		i;
-	int		j;
-	char	*new_storage;
-
-	if (storage == NULL)
-		return (NULL);
-	new_storage = NULL;
-	i = 0;
-	while (storage[i] && storage[i] != '\n')
-		i++;
-	new_storage = malloc(sizeof(char) * ft_strlen(storage) + 1 - i);
-	if (!new_storage)
-		return (NULL);
-	j = 0;
-	i = 0;
-	while (storage && storage[i])
-		new_storage[j++] = storage[i++];
-	new_storage[j] = '\0';
-	free (storage);
-	return (new_storage);
 }
